@@ -1,19 +1,35 @@
-const express = require('express');
+const express=require('express');
 
-app=express();
+const app=express();
 
-app.use("/dashboard",(req,res)=>{
-    res.send("Dashboard coming soon!");
+app.get("/user",(req,res)=>{
+    res.send({firstName: "Akshay", LastName: "Chavan"})
 })
 
-app.use("/about-us",(req,res)=>{
-    res.send("about us page");
+app.post("/user", (req,res)=>{
+    console.log("Save Data to the database");
+    res.send("Data saved to the database");
 })
 
-app.use("/test",(req,res)=>{
-    res.send("Hello from the server");
+app.delete("/user",(req,res)=>{
+    res.send("User deleted successfully");
 })
 
-app.listen(3000,(req,res)=>{
-    console.log("Listening on port number 3000");
-});
+
+app.use("/test/test2",(req,res)=>{ 
+    res.send("hello from server test 2");
+})
+
+//if we write /test then hellow will printed only with localhost:3000/test url
+app.use("/test",(req,res)=>{ 
+    res.send("hello from server test");
+})
+
+//writing just app.us((req,res)), will respond with hello in all urls, even if u do localhost:3000/hello, localhost:3000/test it will always respond with hello form server. 
+app.use((req,res)=>{ 
+    res.send("hello from server");
+})
+//Note: the order of the routes is very important (Sequence Matters)
+app.listen(3000,()=>{
+    console.log("server is listening to port 3000")
+})
