@@ -19,7 +19,6 @@ app.delete("/user",(req,res)=>{
 app.use("/test/test2",(req,res)=>{ 
     res.send("hello from server test 2");
 })
-
 oihsoahioashioß
 //if we write /test then hellow will printed only with localhost:3000/test url
 app.use("/test",(req,res)=>{ 
